@@ -1,14 +1,14 @@
 require("dotenv").config();
-var keys = require("./key.js");
 
-var spotify = new Spotify(keys.spotify);
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
+var request = require("request");
+var fs = require("fs");
+var keys = require('./keys.js')
 var client = new Twitter(keys.twitter);
-
-// variables regarding inputs:
+var spotify = new Spotify(keys.spotify);
 
 var command = process.argv[2];
-var data = process.argv[3];
-
 
 // switchboard of commands:
 switch (command) {
@@ -25,7 +25,7 @@ switch (command) {
         runDoWhatItSays();
         break;
     default:
-        console.log("Liri did not understand your command, try using one of the following:");
+        console.log("\nLiri did not understand your command, try using one of the following:");
         console.log("--------------------------------");
         console.log(`my-tweets`);
         console.log(`spotify-this-song "song title"`);
@@ -40,7 +40,7 @@ switch (command) {
 // displays 20 of the most recent tweets by specified user
 function runTwitter() {
     console.log("twitter");
-
+    console.log(client);
 }
 
 
@@ -48,6 +48,7 @@ function runTwitter() {
 //  include a default song - (ACE OF BASE)
 function runSpotify(songTitle) {
     console.log("spotify" + songTitle);
+    console.log(spotify);
 
 }
 
